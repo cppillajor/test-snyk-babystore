@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth_middleware";
+import { validarRol } from "../interfaces/rol_interface";
+import { getAll,getOne,create,update,remove } from "../controllers/rol_controller";
+const router = Router();
+router.get('/', [authMiddleware] , getAll);
+router.get('/:rol_id', [authMiddleware], getOne);
+router.post('/', [authMiddleware,...validarRol], create);
+router.put('/:rol_id', [authMiddleware,...validarRol], update);
+router.delete('/:rol_id', [authMiddleware], remove);
+export default router;

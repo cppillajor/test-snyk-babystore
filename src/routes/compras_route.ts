@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth_middleware";
+import { getAll,getOne,create,update,remove } from "../controllers/compras_controller";
+import { validarCompras } from "../interfaces/compras_interface";
+const router = Router();
+router.get('/', [authMiddleware] , getAll);
+router.get('/:com_id', [authMiddleware], getOne);
+router.post('/', [authMiddleware,...validarCompras], create);
+router.put('/:com_id', [authMiddleware,...validarCompras], update);
+router.delete('/:com_id', [authMiddleware], remove);
+export default router;

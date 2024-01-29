@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth_middleware";
+import { validarCategoria } from "../interfaces/categoria_interface";
+import { getAll,getOne,create,update,remove } from "../controllers/categoria_controller";
+const router = Router();
+router.get('/', [authMiddleware] , getAll);
+router.get('/:cat_id', [authMiddleware], getOne);
+router.post('/', [authMiddleware,...validarCategoria], create);
+router.put('/:cat_id', [authMiddleware,...validarCategoria], update);
+router.delete('/:cat_id', [authMiddleware], remove);
+export default router;

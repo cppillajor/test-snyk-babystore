@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth_middleware";
+import { validarProveedor } from "../interfaces/proveedor_interface";
+import { getAll,getOne,create,update,remove } from "../controllers/proveedor_controller";
+const router = Router();
+router.get('/', [authMiddleware] , getAll);
+router.get('/:prov_id', [authMiddleware], getOne);
+router.post('/', [authMiddleware,...validarProveedor], create);
+router.put('/:prov_id', [authMiddleware,...validarProveedor], update);
+router.delete('/:prov_id', [authMiddleware], remove);
+export default router;

@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth_middleware";
+import { getAll,getOne,create,update,remove } from "../controllers/menu_controller";
+import { validarMenu } from "../interfaces/menu_interface";
+const router = Router();
+router.get('/', [authMiddleware] , getAll);
+router.get('/:men_id', [authMiddleware], getOne);
+router.post('/', [authMiddleware,...validarMenu], create);
+router.put('/:men_id', [authMiddleware,...validarMenu], update);
+router.delete('/:men_id', [authMiddleware], remove);
+export default router;
