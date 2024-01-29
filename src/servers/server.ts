@@ -16,7 +16,7 @@ const initMiddlewares = () => {
   app.use(hpp());
   app.use(helmet(helmetConf));
   app.use(compression());
-  //app.use(multer().any());
+  app.use(multer().any());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   //app.use("/api-docs", serve, setup(specificationsSwagger));
